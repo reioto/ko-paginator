@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+# Files should be normalized
+
+*.html text
+*.css text
+*.js text
+*.json text
+*.txt text
+
+# Files should be CRLF
+
+*.bat text eol=crlf
+
+
