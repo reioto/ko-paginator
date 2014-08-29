@@ -10,7 +10,10 @@ var koPaginator = koPaginator || function(params = {}) {
     self.itemCountPerPage = ko.observable(params.itemCountPerPage || 10);
 	self.pageRange = ko.observable(params.pageRange || 10);
 	
-	self.itemSource = ko.observableArray(params.itemSource || []);
+	if(typeof params.itemSource === 'function')
+       self.itemSource = params.itemSource || ko.observableArray([]);
+   else
+       self.itemSource = ko.observableArray(params.itemSource || []);
 	
 	/**
 	 * @return int
