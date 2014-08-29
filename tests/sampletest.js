@@ -483,6 +483,48 @@ test("getPage_pagesInRange_move", function(){
     }
 });
 
+test("getPage_firstPageInRange", function(){
+    var item = [];
+    
+    for(var i=0; i < 21; i++) {
+        var name = 'test' + i;
+        item.push({name: name});
+    }
+    
+    obj.itemCountPerPage(2);
+    obj.currentPageNumber(3);
+    obj.pageRange(10);
+    obj.itemSource(item);
+    
+    var page = obj.getPage();
+ 
+    strictEqual(page.firstPageInRange(), 1);
+
+    obj.itemSource([]);
+    deepEqual(page.firstPageInRange(), 1);
+});
+
+
+test("getPage_lastPageInRange", function(){
+    var item = [];
+    
+    for(var i=0; i < 21; i++) {
+        var name = 'test' + i;
+        item.push({name: name});
+    }
+    
+    obj.itemCountPerPage(2);
+    obj.currentPageNumber(3);
+    obj.pageRange(5);
+    obj.itemSource(item);
+    
+    var page = obj.getPage();
+ 
+    strictEqual(page.lastPageInRange(), 5);
+
+    obj.itemSource([]);
+    deepEqual(page.lastPageInRange(), 1);
+});
 
 /*
 asyncTest("request", function(){
