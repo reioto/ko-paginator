@@ -155,11 +155,12 @@ var koPaginator = koPaginator || function(params = {}) {
             }, self),
             lastPageInRange: ko.computed(function(){
                 var pageRange = this.pagesInRange();
-                if (pageRange.length > 0)
+                if (pageRange.length > 0) {
                     var index = pageRange.length -1;  
                     return pageRange[index];
-                else
+                }else {
                     return 0;
+                }
             }, self),
             
             totalItemCount: ko.computed(function(){
