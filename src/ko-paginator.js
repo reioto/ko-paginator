@@ -98,7 +98,7 @@ var koPaginator = koPaginator || function(params = {}) {
     /**
      * @return Object
      */
-    self.getPage = function(){
+    self.getPage = ko.computed(function(){
         
         var page = {
             pageCount: self.pageCount,
@@ -111,14 +111,14 @@ var koPaginator = koPaginator || function(params = {}) {
                     return this.current();
                 else
                     return this.current() + 1;
-            }, self),
+            }, this),
             previous: ko.computed(function(){
                 var current = this.current();
                 if (current <= 1)
                     return 1;
                 else
                     return current - 1;
-            }, self),
+            }, this),
             current: self.current,
 
             firstItemNumber: ko.computed(function(){
@@ -126,7 +126,7 @@ var koPaginator = koPaginator || function(params = {}) {
                     return this.offset() +1;
                 else
                     return 0;
-            }, self),
+            }, this),
             lastItemNumber: ko.computed(function(){
                 var itemCount = this.itemSource().length;
                 if (itemCount > 0) {
@@ -138,15 +138,15 @@ var koPaginator = koPaginator || function(params = {}) {
                 }else {
                     return 0;
                 }
-            }, self),
+            }, this),
             
 
             currentItemCount: ko.computed(function(){
                 return this.getItem().length;
-            }, self),
+            }, this),
             itemCountPerPage: ko.computed(function(){
                 return this.itemCountPerPage();
-            }, self),
+            }, this),
             
             pagesInRange: self.pagesInRange,
             firstPageInRange: ko.computed(function(){
@@ -155,7 +155,7 @@ var koPaginator = koPaginator || function(params = {}) {
                     return pageRange[0];
                 else
                     return 0;
-            }, self),
+            }, this),
             lastPageInRange: ko.computed(function(){
                 var pageRange = this.pagesInRange();
                 if (pageRange.length > 0) {
@@ -164,14 +164,14 @@ var koPaginator = koPaginator || function(params = {}) {
                 }else {
                     return 0;
                 }
-            }, self),
+            }, this),
             
             totalItemCount: ko.computed(function(){
                 return this.itemSource().length; 
-            }, self)
+            }, this)
         };
         
         return page;
-    }
+    }, self);
 };
 
