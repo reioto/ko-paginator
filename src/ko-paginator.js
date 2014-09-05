@@ -1,6 +1,6 @@
 
-var koPaginator = koPaginator || function(params = {}) {
-    
+var koPaginator = koPaginator || function(params) {
+    if (typeof params === 'undefined') {params = {};}
     var self = this;
     
     /**
